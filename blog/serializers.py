@@ -3,6 +3,7 @@ from . models import Blog
 
 
 class BlogSerializer(serializers.ModelSerializer):
+    author = serializers.CharField(source='author.username', read_only=True)
 
 
     class Meta:
