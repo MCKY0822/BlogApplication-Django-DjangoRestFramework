@@ -4,12 +4,17 @@ from .models import Blog
 from .serializers import BlogSerializer
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
+from rest_framework.pagination import PageNumberPagination
+
+class BlogPagination(PageNumberPagination): # for optimization
+    page_size = 5  # set the number of blog posts per page
 
 
 class BlogListView(generics.ListAPIView): # list blog posts
     queryset = Blog.objects.all()
     serializer_class = BlogSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    pagination_class = BlogPagination  # enable pagination for optimization
 
 
 class BlogCreateView(generics.CreateAPIView): # create a new blog post
@@ -21,14 +26,14 @@ class BlogCreateView(generics.CreateAPIView): # create a new blog post
         serializer.save(author=self.request.user)  # set the author to the currently logged-in user
 
 
-class BlogRetrieveDeleteView(generics.RetrieveDestroyAPIView):  # retrieve and Delete Blog Post
+class BlogDeleteView(generics.RetrieveDestroyAPIView):  # retrieve and Delete Blog Post
     queryset = Blog.objects.all()
     serializer_class = BlogSerializer
     permission_classes = [permissions.IsAdminUser]
     lookup_field = 'id'
 
 
-@login_required
+@login_required # authentication
 def home_view(request):
     return render(request, 'home.html')
 
