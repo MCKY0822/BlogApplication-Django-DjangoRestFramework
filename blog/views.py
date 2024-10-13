@@ -4,14 +4,19 @@ from .models import Blog
 from .serializers import BlogSerializer
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 
-class BlogListCreateView(generics.ListCreateAPIView):  # List and Create Blog Posts
+class BlogListView(generics.ListAPIView): # List blog posts
     queryset = Blog.objects.all()
     serializer_class = BlogSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+
+class BlogCreateView(generics.CreateAPIView): # Create a new blog post
+    queryset = Blog.objects.all()
+    serializer_class = BlogSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)  # Set the author to the currently logged-in user
