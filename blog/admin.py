@@ -8,4 +8,4 @@ class BlogAdmin(admin.ModelAdmin):
     search_fields = ('title', 'content', 'author__username') # to search in the admin panel
 
 
-admin.site.register(Blog, BlogAdmin) # Register the Blog model with the custom admin class
+admin.site.register(Blog, BlogAdmin) # register the Blog model with the custom admin class
