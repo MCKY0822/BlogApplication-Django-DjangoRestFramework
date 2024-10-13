@@ -33,9 +33,10 @@ class BlogDeleteView(generics.RetrieveDestroyAPIView):  # retrieve and Delete Bl
     lookup_field = 'id'
 
 
-@login_required # authentication
+@login_required
 def home_view(request):
-    return render(request, 'home.html')
+    blogs = Blog.objects.all()  # retrieve all blog posts / optional requirement
+    return render(request, 'home.html', {'blogs': blogs})
 
 
 def login_view(request):
