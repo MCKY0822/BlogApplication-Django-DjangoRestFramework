@@ -95,6 +95,3 @@ A simple blog application to showcase basic skills in Django Development.
 - [YouTube/Dave Gray](https://www.youtube.com/@DaveGrayTeachesCode)
 - [YouTube/Programming with Mosh](https://www.youtube.com/@programmingwithmosh)
 
-
-## Michael R. Montaña
-michaelmontana@me.com
