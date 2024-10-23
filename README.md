@@ -70,7 +70,7 @@ A simple blog application to showcase basic skills in Django Development.
 12. **Create a Blog Post**
     - Authenticated users can create new blog posts using the available form and/or to the Blog Create page.
     ```
-   http://127.0.0.1:8000/blogs/create/
+    http://127.0.0.1:8000/blogs/create/
     ```
 
 13. **View All Blog Posts**
